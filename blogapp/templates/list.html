@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'list_style.css' %}">
+
+<div class="container">
+
+  <div class="tag-line">
+
+    <h3>タグ一覧</h3><br>
+
+    {% for tag in tag_list %}
+    <a href="{% url 'blogapp:tag' tag %}" class="btn btn-outline-dark">
+      <p>{{ tag.name }}</p>
+    </a>
+    {% endfor %}
+
+  </div>
+
+  {% for item in object_list %}
+
+  <div class="card text-center">
+
+    <div class="card-header">
+      {{item.category}}
+    </div>
+
+    <div class="card-body">
+
+      <h5 class="card-title"> {{item.title}}</h5>
+
+      <a href="{% url 'blogapp:detail' item.pk %}" class="btn btn-primary">詳細をみる</a>
+
+    </div>
+
+    <div class="card-footer text-muted">
+      {{item.postdate}}
+    </div>
+
+  </div>
+
+  {% endfor %}
+
+</div>
+
+<nav>
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a class="page-link text-info" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">&laquo;</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <span class="page-link">&laquo;</span>
+    </li>
+    {% endif %}
+    {% for i in page_obj.paginator.page_range %}
+    {% if page_obj.number == i %}
+    <li class="page-item disabled">
+      <span class="page-link">{{ i }}</span>
+    </li>
+    {% else %}
+    <li class="page-item">
+      <a class="page-link text-info" href="?page={{ i }}">{{ i }}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link text-info" href="?page={{ page_obj.next_page_number }}">&laquo;</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <span class="page-link">&raquo;</span>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+
+{% endblock content %}

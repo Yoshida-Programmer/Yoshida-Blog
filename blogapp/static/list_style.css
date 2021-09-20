@@ -1,0 +1,33 @@
+.container::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.text-center {
+    float: left;
+    width: 70%;
+    margin-top: 40px;
+}
+
+.justify-content-center {
+    margin-top: 20px;
+    margin-right: 24rem;
+}
+
+.btn-outline-dark {
+    float: left;
+    margin-right: 50px;
+    padding: inherit;
+    border: none;
+}
+
+
+.tag-line {
+    overflow-x: scroll;
+    overflow: hidden;
+}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load markdown_extras %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'detail_style.css' %}">
+
+<div class="container">
+
+    <!--パンくずリスト-->
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'blogapp:list' %}">List</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Detail</li>
+        </ol>
+    </nav>
+
+    <!--記事-->
+    <div class="card text-center">
+
+        <article>
+
+            <div class="card-header">
+                {{object.category}}
+            </div>
+
+            <div class="card-body">
+
+                <h5 class="card-title"> {{object.title}}</h5><br>
+                <div class="card-text" id="content">{{object.content|markdown|safe}}</div>
+
+                <!--<a href="#" class="card-text">#{{object.tags}}</a><br>-->
+
+                <label>
+                    {% for tag in BlogModel.tags.all %}
+                    {{tags}}
+                    {% endfor %}
+                </label>
+
+                <div class="button-menu">
+                    <a href="{% url 'blogapp:list' %}" class="btn btn-primary">一覧へ戻る</a>
+                    <a href="{% url 'blogapp:comment_create' object.pk %}" class="btn btn-primary">コメントする</a>
+                </div>
+
+
+            </div>
+
+            <section>
+                <div class="card-footer text-muted">
+                    {{object.postdate}}
+                </div>
+            </section>
+            
+        </article>
+
+    </div>
+
+    <!--コメント-->
+    {% for comment in object.comment_set.all %}
+    <div class="comment-list">
+        <div class='border-bottom'>{{ comment.user_name }}　{{ comment.created_at }}</div>
+
+        <!--改行しないようlinebreaksを設定,URL要素に<a>要素を設定-->
+        <div class='mt-2'>{{ comment.message | linebreaks | urlize }}</div>
+    </div>
+    {% empty %}
+    <p>コメントはありません</p>
+    {% endfor %}
+
+</div>
+
+{% endblock content %}
