@@ -19,6 +19,12 @@
 
   </div>
 
+  {% if messages %}
+    {% for message in messages %}
+    <p class="message_fontcolor">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+
   {% for item in object_list %}
 
   <div class="card text-center">

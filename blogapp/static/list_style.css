@@ -31,3 +31,10 @@
     overflow-x: scroll;
     overflow: hidden;
 }
+
+.message_fontcolor {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-left: 21.5rem
+}
+

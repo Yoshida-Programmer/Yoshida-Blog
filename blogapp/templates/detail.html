@@ -32,12 +32,6 @@
 
                 <!--<a href="#" class="card-text">#{{object.tags}}</a><br>-->
 
-                <label>
-                    {% for tag in BlogModel.tags.all %}
-                    {{tags}}
-                    {% endfor %}
-                </label>
-
                 <div class="button-menu">
                     <a href="{% url 'blogapp:list' %}" class="btn btn-primary">一覧へ戻る</a>
                     <a href="{% url 'blogapp:comment_create' object.pk %}" class="btn btn-primary">コメントする</a>
@@ -51,7 +45,7 @@
                     {{object.postdate}}
                 </div>
             </section>
-            
+
         </article>
 
     </div>

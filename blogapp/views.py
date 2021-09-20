@@ -8,6 +8,8 @@ from django.urls import reverse_lazy
 from django.views.generic.detail import SingleObjectMixin
 from django.views import generic
 from django import forms
+from django.core.checks import messages
+from django.contrib import messages
 
 '''ブログ一覧'''
 class BlogList(ListView):
@@ -15,6 +17,7 @@ class BlogList(ListView):
     model = BlogModel
     paginate_by = 10
 
+    #クエリを実行してレコードを抽出（投稿日付【降順】に並べ替え）
     def get_queryset(self):
         posts = BlogModel.objects.order_by('-postdate')
         return posts
@@ -53,11 +56,13 @@ class TagDetail(SingleObjectMixin, ListView):
         self.object = self.get_object(queryset=Tag.objects.all())
         return super().get(request, *args, **kwargs)
 
+    #辞書形式のデータとして取得し、テンプレートにデータベースのデータを出力
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tag'] = self.object
         return context
 
+    #クエリを実行してレコードを抽出（投稿日付【降順】に並べ替え）
     def get_queryset(self):
         return self.object.post_set.all().order_by('-postdate')
 
@@ -69,6 +74,7 @@ class TagView(generic.ListView):
     def get_queryset(self):
         tag = Tag.objects.get(name=self.kwargs['tag'])
         queryset = BlogModel.objects.order_by('-id').filter(tag=tag)
+        messages.success(self.request, '検索完了しました')
         return queryset
 
     def get_context_data(self, **kwargs):
