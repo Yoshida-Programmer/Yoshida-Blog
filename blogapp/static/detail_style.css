@@ -48,6 +48,10 @@ h5.card-title {
     width: 100%;
 }
 
+.comment-title {
+    margin-top: 20px;
+}
+
 h2 {
     position: relative;
     padding: 0 65px;
