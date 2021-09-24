@@ -5,8 +5,10 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'list_style.css' %}">
 
+<!--全体-->
 <div class="container">
-
+  
+  <!--タグ一覧-->
   <div class="tag-line">
 
     <h3>タグ一覧</h3><br>
@@ -19,12 +21,14 @@
 
   </div>
 
+  <!--タグ検索時のメッセージ表示-->
   {% if messages %}
     {% for message in messages %}
     <p class="message_fontcolor">{{ message }}</p>
     {% endfor %}
   {% endif %}
 
+  <!--ブログ一覧-->
   {% for item in object_list %}
 
   <div class="card text-center">
@@ -49,8 +53,9 @@
 
   {% endfor %}
 
+  <!--プロフィール-->
   <div class="card" style="width: 18rem;">
-    <img src="{% static 'my-profile.png' %}" class="card-img-top" alt="profile-image">
+    <img src="{% static 'usasa.png' %}" class="card-img-top" alt="profile-image">
     <div class="card-body">
       <h5 class="card-title">自己紹介</h5>
       <p class="card-text">吉田と申します。SE＆プログラマーです。<br>ここではプログラミングの話題をメインにブログを綴っていこうと思います。</p>
@@ -60,10 +65,14 @@
       <a href="https://github.com/Yoshida-Programmer"><li class="list-group-item">Github</li></a>
       <a href="#"><li class="list-group-item">Facebook</li></a>
     </ul>
+    
   </div>
+
+  
 
 </div>
 
+<!--ページネーション機能-->
 <nav>
   <ul class="pagination justify-content-center">
     {% if page_obj.has_previous %}

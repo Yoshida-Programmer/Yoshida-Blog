@@ -50,7 +50,7 @@ class Comment(models.Model):
     created_at = models.DateTimeField('作成日', default=timezone.now)
  
     def __str__(self):
-        return self.text[:20]
+        return self.message[:20]
 
 """返信モデル"""
 class Reply(models.Model):

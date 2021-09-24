@@ -1,5 +1,5 @@
 from django import forms
-from .models import BlogModel, Comment
+from .models import Comment
 
 """コメント投稿フォーム"""
 class CommentCreateForm(forms.ModelForm):
