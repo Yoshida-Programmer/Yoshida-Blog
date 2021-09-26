@@ -1,0 +1,1 @@
+web: gunicorn pento_arts.wsgi
