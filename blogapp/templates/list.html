@@ -28,6 +28,11 @@
     {% endfor %}
   {% endif %}
 
+  <!--検索バーの検索結果メッセージ表示-->
+  {% if keyword %}
+    <h4 class="mb-4">「{{ keyword }}の検索結果」</h4>
+  {% endif %}
+
   <!--ブログ一覧-->
   {% for item in object_list %}
 
