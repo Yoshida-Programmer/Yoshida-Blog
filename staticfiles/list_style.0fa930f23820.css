@@ -1,0 +1,62 @@
+.container::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/*リスト全体*/
+.container {
+    margin-top: 50px;
+}
+
+/*ブログリスト*/
+.text-center {
+    float: left;
+    width: 70%;
+    margin-top: 40px;
+}
+
+/*プロフィール欄*/
+.card {
+    margin-top: 40px;
+    margin-right: 100px;
+}
+
+.card-title {
+    text-align: center;
+}
+
+.list-group {
+    text-align: center;
+}
+
+.list-group a {
+    text-decoration:none;    
+}
+
+
+.justify-content-center {
+    margin-top: 20px;
+    margin-right: 24rem;
+}
+
+.btn-outline-dark {
+    float: left;
+    margin-right: 50px;
+    padding: inherit;
+    border: none;
+}
+
+
+.tag-line {
+    overflow-x: scroll;
+    overflow: hidden;
+}
+
+.message_fontcolor {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-left: 21.5rem
+}
+
+
