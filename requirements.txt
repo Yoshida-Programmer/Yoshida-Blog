@@ -28,6 +28,7 @@ django-environ==0.4.5
 django-googledrive-storage==1.5.2
 django-heroku==0.3.1
 django-imagekit==4.0.2
+django-mdeditor==0.1.18
 django-storages==1.11.1
 django-widget-tweaks==1.4.8
 entrypoints==0.3
