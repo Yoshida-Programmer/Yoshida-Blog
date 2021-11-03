@@ -1,1 +1,1 @@
-web: gunicorn pento_arts.wsgi
+web: gunicorn blogapp.wsgi

@@ -47,6 +47,10 @@
     border: none;
 }
 
+.card-text {
+    margin: 20px 30px;
+}
+
 
 .tag-line {
     overflow-x: scroll;

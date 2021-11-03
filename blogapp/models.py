@@ -13,6 +13,10 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = ('タグ一覧')
+        verbose_name_plural = ('タグ一覧')
+
 CATEGORY = (('Illustration','イラスト'),('life','日常'),('business','仕事関係'))
 
 """ブログモデル"""
@@ -26,7 +30,7 @@ class BlogModel(models.Model):
         verbose_name= 'ジャンル'
     )
     #Tagモデルと紐づけ
-    tag = models.ManyToManyField(Tag, blank=True)
+    tag = models.ManyToManyField(Tag, blank=True, verbose_name="タグ")
 
     #管理サイトに表示されるオブジェクト名を「title」フィールド名に設定
     def __str__(self):
@@ -52,6 +56,10 @@ class Comment(models.Model):
     def __str__(self):
         return self.message[:20]
 
+    class Meta:
+        verbose_name = ('コメント一覧')
+        verbose_name_plural = ('コメント一覧')
+
 """返信モデル"""
 class Reply(models.Model):
     name = models.CharField('名前', max_length=255, default='名無し')
@@ -61,5 +69,9 @@ class Reply(models.Model):
 
     def __str__(self):
         return self.text[:20]
+
+    class Meta:
+        verbose_name = ('返信')
+        verbose_name_plural = ('返信')
 
 

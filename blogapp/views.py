@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView
-from django.views.generic.base import View
+from django.views.generic import View
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.http import HttpResponseRedirect, request
 from .models import BlogModel, Tag, Comment
@@ -25,28 +25,6 @@ class BlogList(ListView):
     def get_queryset(self):
         posts = BlogModel.objects.order_by('-postdate')
         return posts
-
-
-'''検索機能'''
-class SearchView(View):
-    def get(self, request, *args, **kwargs):
-        post_data = BlogModel.objects.order_by('-id')
-        keyword = request.GET.get('keyword')
-
-        if keyword:
-            exclusion_list = set([' ', '　'])
-            query_list = ''
-            for word in keyword:
-                if not word in exclusion_list:
-                    query_list += word
-            #Qオブジェクトを使用して、投稿データを検索入力したキーワードでフィルターをかける(or検索)
-            query = reduce(and_, [Q(title__icontains=q) | Q(content__icontains=q) for q in query_list])
-            post_data = post_data.filter(query)
-
-        return render(request, 'list.html', {
-            'keyword' : keyword,
-            'post_data' : post_data
-        })
 
 
 '''ブログ詳細'''
@@ -132,3 +110,25 @@ class CommentView(generic.CreateView):
         context = super().get_context_data(**kwargs)
         context['post'] = get_object_or_404(BlogModel, pk=self.kwargs['pk'])
         return context
+
+    '''検索機能'''
+class SearchView(View):
+    def get(self, request, *args, **kwargs):
+        post_data = BlogModel.objects.order_by('-postdate')
+        keyword = request.GET.get('keyword')
+
+        if keyword:
+            exclusion_list = set([' ', '　'])
+            query_list = ''
+            for word in keyword:
+                if not word in exclusion_list:
+                    query_list += word
+            #Qオブジェクトを使用して、投稿データを検索入力したキーワードでフィルターをかける(or検索)
+            query = reduce(and_, [Q(title__icontains=q) | Q(content__icontains=q) for q in query_list])
+            post_data = post_data.filter(query)
+
+        return render(request, 'list.html', {
+            'keyword' : keyword,
+            'post_data' : post_data
+        })
+

@@ -44,7 +44,8 @@
 
     <div class="card-body">
 
-      <h5 class="card-title"> {{item.title}}</h5>
+      <h4 class="card-title"> {{item.title}}</h4>
+      <div class="card-text">{{item.content | truncatechars:50}}</div>
 
       <a href="{% url 'blogapp:detail' item.pk %}" class="btn btn-primary">詳細をみる</a>
 
@@ -73,6 +74,7 @@
     
   </div>
 
+  
   
 
 </div>
